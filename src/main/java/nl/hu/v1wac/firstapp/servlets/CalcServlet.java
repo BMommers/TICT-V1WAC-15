@@ -1,4 +1,4 @@
-package nl.hu.v1wac.firstapp;
+package nl.hu.v1wac.firstapp.servlets;
 
 import java.io.*;
 import javax.servlet.ServletException;
@@ -18,7 +18,7 @@ public class CalcServlet extends HttpServlet {
         out.println("<html>");
         out.println(" <title>Dynamic Example</title>");
         out.println(" <body>");
-        out.println(" <h2>Dynamic webapplication example</h2>");
+        out.println(" <h2>" + n1 + " " + op + " " + n2 + " = ... </h2>");
         switch (op) {
             case "+":
                 out.println(" <h2>" + (n1 + n2) + "</h2>");

@@ -1,5 +1,4 @@
-package nl.hu.v1wac.firstapp;
-
+package nl.hu.v1wac.firstapp.servlets;
 import java.io.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
