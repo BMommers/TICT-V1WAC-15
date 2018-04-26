@@ -1,0 +1,19 @@
+div#frame {
+    background-color: gray;
+    margin: 1em;
+    padding: 0.5em;
+    text-align: center;
+    width: 13.5em;
+}
+div#display {
+    background-color: white;
+    height: 1.5em;
+    margin: 0.5em;
+    padding-right: 0.3em;
+    text-align: right;
+}
+button {
+    height: 3.5em;
+    margin-bottom: 0.3em;
+    width: 3.5em;
+}
