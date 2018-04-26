@@ -53,14 +53,8 @@ public class WorldResource {
         JsonArrayBuilder jab = Json.createArrayBuilder();
 
         for (Country c : service.get10LargestSurfaces()) {
-            JsonObjectBuilder job = Json.createObjectBuilder();
-            job.add("code", c.getCode());
-            job.add("naam", c.getName());
-            job.add("oppervlakte", c.getSurface());
-
-            jab.add(job);
+            jab.add(formatCountry(c));
         }
-
         return jab.build().toString();
     }
 
@@ -71,14 +65,27 @@ public class WorldResource {
         WorldService service = ServiceProvider.getWorldService();
         JsonArrayBuilder jab = Json.createArrayBuilder();
 
-        for (Country c : service.get10LargestSurfaces()) {
-            JsonObjectBuilder job = Json.createObjectBuilder();
-            job.add("code", c.getCode());
-            job.add("naam", c.getName());
-            job.add("populatie", c.getPopulation());
-
-            jab.add(job);
+        for (Country c : service.get10LargestPopulations()) {
+            jab.add(formatCountry(c));
         }
         return jab.build().toString();
+    }
+
+    public JsonObjectBuilder formatCountry(Country c) {
+        JsonObjectBuilder job = Json.createObjectBuilder();
+
+        job.add("code", c.getCode());
+        job.add("name", c.getName());
+        job.add("capital", c.getCapital());
+        job.add("surface", c.getSurface());
+        job.add("government", c.getGovernment());
+        job.add("lat", c.getLatitude());
+        job.add("iso3", c.getIso3());
+        job.add("continent", c.getContinent());
+        job.add("region", c.getRegion());
+        job.add("population", c.getPopulation());
+        job.add("lng", c.getLongitude());
+
+        return job;
     }
 }
