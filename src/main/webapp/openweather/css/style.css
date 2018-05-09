@@ -1,0 +1,21 @@
+* {
+    font-family: courier;
+}
+
+body {
+    background-color: #00c7ff;
+}
+
+table th {
+    width: 200px;
+    text-align: left;
+}
+table td {
+    width: 270px;
+    text-align: left;
+}
+
+#countryinfo tr:not(:first-child):hover {
+    background-color: aliceblue;
+    cursor: context-menu;
+}

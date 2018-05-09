@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather and vacation thingy</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<div id="frame">
+    <div id="myLocation">
+        <h3>Mijn locatie</h3>
+        <table>
+            <tr>
+                <td>Landcode:</td><td><label id="landcode"></label></td>
+            </tr>
+
+            <tr>
+                <td>Land:</td><td><label id="land"></label></td>
+            </tr>
+
+            <tr>
+                <td>Regio:</td><td><label id="regio"></label></td>
+            </tr>
+
+            <tr>
+                <td>Stad:</td><td><label id="stad"></label></td>
+            </tr>
+
+            <tr>
+                <td>Postcode:</td><td><label id="postcode"></label></td>
+            </tr>
+
+            <tr>
+                <td>Latitude:</td><td><label id="latitude"></label></td>
+            </tr>
+
+            <tr>
+                <td>Longitude</td><td><label id="longitude"></label></td>
+            </tr>
+
+            <tr>
+                <td>IP:</td><td><label id="ip"></label></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="weatherInfo">
+        <h3 id="weatherinfoH1"></h3>
+        <table>
+            <tr>
+                <td>Temperatuur:</td><td><label id="temperatuur"></label></td>
+            </tr>
+
+            <tr>
+                <td>Luchtvochtigheid:</td><td><label id="luchtvochtigheid"></label></td>
+            </tr>
+
+            <tr>
+                <td>Windsnelheid:</td><td><label id="windsnelheid"></label></td>
+            </tr>
+
+            <tr>
+                <td>Windrichting:</td><td><label id="windrichting"></label></td>
+            </tr>
+
+            <tr>
+                <td>Zonsopgang:</td><td><label id="zonsopgang"></label></td>
+            </tr>
+
+            <tr>
+                <td>Zonsondergang:</td><td><label id="zonsondergang"></label></td>
+            </tr>
+        </table>
+    </div>
+    <div id="countryList">
+        <h3>Beschikbare vakantiebestemmingen</h3>
+        <table id="countryinfo">
+            <tr>
+                <th>Land</th><th>Hoofdstad</th><th>Regio</th><th>Oppervlakte</th><th>Inwoners</th>
+            </tr>
+        </table>
+    </div>
+</div>
+    <script src="scripts/script.js"></script>
+</body>
+</html>
