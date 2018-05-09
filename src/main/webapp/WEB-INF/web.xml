@@ -17,4 +17,8 @@ http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
         <servlet-name>Jersey REST Service</servlet-name>
         <url-pattern>/restservices/*</url-pattern>
     </servlet-mapping>
+    <error-page>
+        <location>/images/error.jpg</location>
+    </error-page>
+
 </web-app>
