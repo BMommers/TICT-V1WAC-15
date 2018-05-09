@@ -19,11 +19,7 @@ public class WorldResource {
         JsonArrayBuilder jab = Json.createArrayBuilder();
 
         for (Country c : service.getAllCountries()) {
-            JsonObjectBuilder job = Json.createObjectBuilder();
-            job.add("code", c.getCode());
-            job.add("naam", c.getName());
-
-            jab.add(job);
+            jab.add(formatCountry(c));
         }
         JsonArray array = jab.build();
         return array.toString();
