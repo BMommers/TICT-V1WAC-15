@@ -4,6 +4,7 @@
 
 body {
     background-color: #00c7ff;
+    /*cursor: url(../images/my-cursor.png), auto;*/
 }
 
 table th {
@@ -16,6 +17,42 @@ table td {
 }
 
 #countryinfo tr:not(:first-child):hover {
-    background-color: aliceblue;
-    cursor: context-menu;
+    background-color: #ffa100;
+    color: #00ff1e;
+    font-weight: bold;
+    /*cursor: url(https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Affligem_Blonde.png/266px-Affligem_Blonde.png), auto;*/
+    cursor: url(../images/my-cursor.png), auto;
+}
+
+
+@media screen and (max-width: 400px) {
+    #countryList {
+        overflow-x: auto;
+    }
+
+}
+
+
+@media screen and (min-width: 700px) {
+    div { border: solid thin;}
+
+    #frame {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    #myLocation {
+        grid-column: 1;
+        grid-row: 1;
+    }
+    #weatherInfo {
+        grid-column: 2;
+        grid-row: 1;
+    }
+    #countryList {
+        grid-column: 1/3;
+        grid-row: 2;
+    }
+
 }

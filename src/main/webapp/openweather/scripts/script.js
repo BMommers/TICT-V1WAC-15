@@ -28,22 +28,42 @@ function initPage() {
 
 
 function showWeather(latitude, longitude) {
+    var location = latitude + "-" + longitude;
+    if (localStorage.getItem(location) === null) {
+        fetchWeather(latitude,longitude)
+    }
+
+    var myJson = JSON.parse(window.localStorage.getItem(location));
+
+    if (myJson.timeFetched + 600000 < Date.now()) {
+        fetchWeather(latitude, longitude);
+        myJson = JSON.parse(window.localStorage.getItem(location));
+    }
+
+    document.querySelector("#weatherinfoH1").innerHTML = "Het weer in " + myJson.name;
+
+    document.querySelector("#temperatuur").innerHTML = myJson.main.temp;
+    document.querySelector("#luchtvochtigheid").innerHTML = myJson.main.humidity;
+    document.querySelector("#windsnelheid").innerHTML = myJson.wind.speed;
+    document.querySelector("#windrichting").innerHTML = degToCompass(myJson.wind.deg);
+    document.querySelector("#zonsopgang").innerHTML = unixToTime(myJson.sys.sunrise);
+    document.querySelector("#zonsondergang").innerHTML = unixToTime(myJson.sys.sunset);
+
+
+}
+
+function fetchWeather(latitude, longitude) {
+    var location = latitude + "-" + longitude;
     fetch('https://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude  + '&appid=5cf088b02f715105e1fe3ed09163a51c&units=metric')
         .then(response => response.json())
         .then(function(myJson) {
-            document.querySelector("#weatherinfoH1").innerHTML = "Het weer in " + myJson.name;
-
-            document.querySelector("#temperatuur").innerHTML = myJson.main.temp;
-            document.querySelector("#luchtvochtigheid").innerHTML = myJson.main.humidity;
-            document.querySelector("#windsnelheid").innerHTML = myJson.wind.speed;
-            document.querySelector("#windrichting").innerHTML = degToCompass(myJson.wind.deg);
-            document.querySelector("#zonsopgang").innerHTML = unixToTime(myJson.sys.sunrise);
-            document.querySelector("#zonsondergang").innerHTML = unixToTime(myJson.sys.sunset);
-    })
+            myJson['timeFetched'] = Date.now();
+            window.localStorage.setItem(location, JSON.stringify(myJson))
+    });
 }
 
 function loadCountries() {
-    fetch('http://localhost:8080/restservices/countries')
+    fetch('/restservices/countries')
         .then(response => response.json())
         .then(function(myJson) {
             for (let country of myJson) {
