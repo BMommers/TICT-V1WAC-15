@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp "target/*" webapp.runner.launch.Main --port $PORT target/firstapp.war
+web: java $JAVA_OPTS -cp "target/*" webapp.runner.launch.Main --port $PORT target/*.war
