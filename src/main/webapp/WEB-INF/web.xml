@@ -11,6 +11,10 @@ http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
             <param-name>jersey.config.server.provider.packages</param-name>
             <param-value>nl.hu.v1wac.firstapp.webservices</param-value>
         </init-param>
+        <init-param>
+            <param-name>jersey.config.server.provider.classnames</param-name>
+            <param-value>org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature</param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
@@ -18,6 +22,7 @@ http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
         <url-pattern>/restservices/*</url-pattern>
     </servlet-mapping>
     <error-page>
+        <error-code>404</error-code>
         <location>/images/error.jpg</location>
     </error-page>
 

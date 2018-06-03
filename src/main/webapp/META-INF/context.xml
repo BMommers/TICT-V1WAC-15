@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="jdbc/PostgresDS"
+              url="jdbc:postgresql://192.168.205.2:5432/worlddb"
+              driverClassName="org.postgresql.Driver"
+              auth="Container"
+              type="javax.sql.DataSource"
+              username="postgres"
+              password="Number1." />
+</Context>
