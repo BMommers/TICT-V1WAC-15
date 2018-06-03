@@ -15,6 +15,8 @@ public class BaseDAO {
                     String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
                     BasicDataSource pool = new BasicDataSource();
                     if (dbUri.getUserInfo() != null) {
+                        System.out.println("DATABASE URL IS AS FOLLOWED. Search keyword = AVOCADO");
+                        System.out.println(DATABASE_URL_PROP);
                         System.out.println("USER INFO IS AS FOLLOWED. Search keyword = AVOCADO");
                         System.out.println(dbUri.getUserInfo());
                         pool.setUsername(dbUri.getUserInfo().split(":")[0]);
