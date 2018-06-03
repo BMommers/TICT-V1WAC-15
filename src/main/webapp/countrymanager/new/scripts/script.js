@@ -3,7 +3,7 @@ function initPage() {
         var formData = new FormData(document.querySelector("#PUTcountryForm"));
         var encData = new URLSearchParams(formData.entries());
 
-        fetch("https://localhost:8443/restservices/countries/new", {method: 'PUT', body: encData })
+        fetch("/restservices/countries/new", {method: 'PUT', body: encData })
             .then(function(response) {return response;})
             .then(function(myJson) { console.log(myJson)})
 

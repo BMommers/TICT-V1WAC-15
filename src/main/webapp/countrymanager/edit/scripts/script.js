@@ -7,7 +7,7 @@ function initPage() {
         console.log(formData);
         var encData = new URLSearchParams(formData.entries());
 
-        fetch("https://localhost:8443/restservices/countries/"+countryCode, {method: 'PUT', body: encData })
+        fetch("/restservices/countries/"+countryCode, {method: 'PUT', body: encData })
             .then(function(response) {return response;})
             .then(function(myJson) { console.log(myJson)})
 
@@ -87,8 +87,8 @@ function initData() {
 }
 
 function updateCountry() {
-    console.log("update")
-    fetch(" https://localhost:8443/restservices/countries/" + id, {method: 'DELETE'})
+    console.log("update");
+    fetch(" /restservices/countries/" + id, {method: 'DELETE'})
         .then(function (response) {
             console.log(response);
             if (response.ok) // response-status = 200 OK

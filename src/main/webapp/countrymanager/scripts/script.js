@@ -200,7 +200,7 @@ function sortCountries (index) {
 
 function deleteCountry (name, id) {
     if (confirm("Wilt u " + name + " echt verwijderen?")) {
-        fetch(" https://localhost:8443/restservices/countries/" + id, {method: 'DELETE', headers : {'Authorization': 'Bearer ' + window.sessionStorage.getItem("sessionToken") }})
+        fetch(" /restservices/countries/" + id, {method: 'DELETE', headers : {'Authorization': 'Bearer ' + window.sessionStorage.getItem("sessionToken") }})
             .then(function (response) {
                 console.log(response);
                 if (response.ok) // response-status = 200 OK
