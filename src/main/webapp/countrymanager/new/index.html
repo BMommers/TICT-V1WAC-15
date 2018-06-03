@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather and vacation thingy</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+<div id="frame">
+
+    <form id="loginForm">
+        <h2>Login:</h2>
+        <label id="loginMessage"></label><br>
+        <input type="text" name="username" id="username" value="Bart">
+        <input type="password" name="password" id="password" value="Welkom01">
+        <input type="button" id="login" value="Login">
+    </form>
+    <div>
+        <h4>Login status</h4>
+        <h5 id="loginstatus">NOT LOGGED IN</h5>
+        <button id="logoutBtn" class="hidden">Log Out</button>
+    </div>
+
+
+    <form id="PUTcountryForm">
+        <h2 id="Title">Nieuwe vakantiebestemming: </h2>
+
+        <label>Code</label><br>
+        <input name="code" type="text" id="countryCode"><br>
+
+        <label>Naam</label><br>
+        <input name="name" type="text" id="countryName"><br>
+
+        <label>Hoofdstad</label><br>
+        <input name="capital" type="text" id="countryCap"><br>
+
+        <label>Oppervlakte</label><br>
+        <input name="surface" type="text" id="countrySurface"><br>
+
+        <label>Populatie</label><br>
+        <input name="population" type="text" id="countryPopulation"><br>
+
+        <input type="button" id="confirmPUT" value="Creëer">
+    </form>
+
+
+</div>
+    <script src="scripts/script.js"></script>
+</body>
+</html>

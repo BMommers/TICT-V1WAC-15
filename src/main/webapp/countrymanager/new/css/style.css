@@ -1,0 +1,83 @@
+* {
+    font-family: courier;
+}
+
+body {
+    background-color: #ffffff;
+    /*cursor: url(../images/my-cursor.png), auto;*/
+}
+
+table {
+    border-spacing: 10px 0;
+    text-align: left;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+table th {
+    cursor: pointer;
+}
+table td {
+    /*width: 400px;*/
+    border-spacing: 200px 0;
+    text-align: left;
+}
+
+.centered {
+    text-align: center;
+    align-content: center;
+}
+
+.clickable {
+    color: black;
+    cursor: pointer;
+    text-decoration-line: underline;
+}
+
+th {background-color: #fffbff;}
+
+
+table tbody tr:nth-child(even) {
+    background: #f5f1f5;
+}
+
+table tbody tr:nth-child(odd) {
+    background: #e7e3e7;
+}
+table .edit {
+    background: #ccaa9f;
+}
+
+table .hidden {
+    visibility:collapse;
+}
+
+#countryinfo tr:not(:first-child):hover {
+    background-color: #003bff;
+    color: #ff002b;
+    font-weight: bold;
+}
+
+
+@media screen and (max-width: 400px) {
+    #countryList {
+        overflow-x: auto;
+    }
+
+}
+
+
+@media screen and (min-width: 700px) {
+    div { border: solid thin;}
+
+    #frame {
+        display: grid;
+    }
+    #countryList {
+        grid-column: 1/3;
+        grid-row: 2;
+    }
+
+}
