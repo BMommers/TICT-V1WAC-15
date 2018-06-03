@@ -3,11 +3,15 @@ package nl.hu.v1wac.firstapp.webservices;
 import nl.hu.v1wac.firstapp.model.Country;
 import nl.hu.v1wac.firstapp.model.ServiceProvider;
 import nl.hu.v1wac.firstapp.model.WorldService;
+
+import javax.annotation.security.RolesAllowed;
 import javax.json.*;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
+import java.util.HashMap;
+import java.util.Map;
 
 @Path("/countries")
 public class WorldResource {
@@ -26,6 +30,20 @@ public class WorldResource {
     }
 
 
+    @GET
+    @Path("filter/{qry}")
+    @Produces("application/json")
+    public String getLargestCountries(@PathParam("qry") String filter) {
+        WorldService service = ServiceProvider.getWorldService();
+        JsonArrayBuilder jab = Json.createArrayBuilder();
+
+        for (Country c : service.filterCountries(filter)) {
+            jab.add(formatCountry(c));
+        }
+        JsonArray array = jab.build();
+        return array.toString();
+    }
+
 
     @GET
     @Path("{id}")
@@ -34,10 +52,7 @@ public class WorldResource {
         WorldService service = ServiceProvider.getWorldService();
         Country c = service.getCountryByCode(id);
 
-        JsonObjectBuilder job = Json.createObjectBuilder();
-        job.add("id", c.getCode());
-        job.add("naam", c.getName());
-        return job.build().toString();
+        return formatCountry(c).build().toString();
     }
 
 
@@ -84,4 +99,62 @@ public class WorldResource {
 
         return job;
     }
+
+    @PUT
+    @Path("{id}")
+    @Produces("application/json")
+    public Response updateCountry( @PathParam("id") String id,
+                                   @FormParam("name") String nm,
+                                   @FormParam("capital") String cap,
+                                   @FormParam("surface") String surf,
+                                   @FormParam("population") String pop) {
+
+        WorldService service = ServiceProvider.getWorldService();
+
+        if (!service.update(id, nm, cap, surf, pop)) {
+            Map<String, String> messages = new HashMap<String, String>();
+            messages.put("error", "Country does not exist!");
+            return Response.status(409).entity(messages).build();
+        }
+
+        Country country = service.getCountryByCode(id);
+        return Response.ok(country).build();
+    }
+
+    @PUT
+    @Path("new")
+    @Produces("application/json")
+    public Response newCountry( @FormParam("code") String id,
+                                   @FormParam("name") String nm,
+                                   @FormParam("capital") String cap,
+                                   @FormParam("surface") String surf,
+                                   @FormParam("population") String pop) {
+
+        WorldService service = ServiceProvider.getWorldService();
+
+        if (!service.save(id, nm, cap, surf, pop)) {
+            Map<String, String> messages = new HashMap<String, String>();
+            messages.put("error", "Country not created!");
+            return Response.status(409).entity(messages).build();
+        }
+
+        Country country = service.getCountryByCode(id);
+        return Response.ok(country).build();
+    }
+
+    @DELETE
+    @RolesAllowed("admin")
+    @Path("{id}")
+    @Produces("application/json")
+    public Response deleteCountry(@Context SecurityContext sc,
+                                  @PathParam("id") String id) {
+        WorldService service = ServiceProvider.getWorldService();
+
+        if (!service.delete(id)) {
+            return Response.status(404).build();
+        }
+
+        return Response.ok().build();
+    }
+
 }
