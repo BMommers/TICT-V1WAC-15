@@ -41,7 +41,20 @@ public class CountryPostgresDaoImpl extends PostgresBaseDao implements CountryDa
         } catch (SQLException sqle) { sqle.printStackTrace(); }
         return results;
     }
-    public boolean save(Country country) {
+
+    public List<Country> filterCountries(String filterQuery) {
+        return selectCountries("SELECT * FROM country WHERE LOWER(name) LIKE LOWER('%" + filterQuery + "%')");
+    }
+
+    public boolean save(String code, String name, String capital, String surface, String population) {
+        try (Connection con = super.getConnection()) {
+            PreparedStatement pstmt = con.prepareStatement("INSERT INTO country (code, name, capital, surfacearea, population) VALUES ('" + code + "', '" + name + "', '" + capital + "', '" + surface + "', '" + population + "')");
+            ResultSet dbResultSet = pstmt.executeQuery();
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return false;
+        }
+
         return true;
     }
     public List<Country> findAll(){
@@ -57,16 +70,18 @@ public class CountryPostgresDaoImpl extends PostgresBaseDao implements CountryDa
     public List<Country> find10LargestSurfaces(){
         return selectCountries("SELECT * FROM country ORDER BY surfacearea desc LIMIT 10");
     }
-    public boolean update(Country country){
-//        try (Connection con = super.getConnection()) {
-//            PreparedStatement pstmt = con.prepareStatement("UPDATE country SET WHERE code = '" + country.getCode() + "'");
-//            ResultSet dbResultSet = pstmt.executeQuery();
-//        } catch (SQLException sqle) {
-//            sqle.printStackTrace();
-//            return false;
-//        }
+    public boolean update(String code, String name, String capital, String surface, String population){
+        try (Connection con = super.getConnection()) {
+            PreparedStatement pstmt = con.prepareStatement("UPDATE country SET (name, capital, surfacearea, population) = ('" + name + "', '" + capital + "', '" + surface + "', '" + population + "') WHERE code = '" + code + "'");
+            ResultSet dbResultSet = pstmt.executeQuery();
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            return false;
+        }
+
         return true;
     }
+
     public boolean delete(Country country){
         try (Connection con = super.getConnection()) {
             PreparedStatement pstmt = con.prepareStatement("DELETE FROM country WHERE code = '" + country.getCode() + "'");
