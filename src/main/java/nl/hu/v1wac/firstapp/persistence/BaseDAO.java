@@ -1,9 +1,8 @@
 package nl.hu.v1wac.firstapp.persistence;
-
-import org.apache.commons.dbcp.BasicDataSource;
-
 import java.net.URI; import java.sql.Connection;
 import javax.naming.InitialContext; import javax.sql.DataSource;
+import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
+
 
 public class BaseDAO {
     private static DataSource connectionPool;
@@ -20,7 +19,7 @@ public class BaseDAO {
                         pool.setPassword(dbUri.getUserInfo().split(":")[1]);
                     }
                     pool.setMaxIdle(4); // maximaal 4 ongebruikte connecties
-                    pool.setMaxActive(20); // maximaal 20 connecties in Heroku
+                    pool.setMaxTotal(20); // maximaal 20 connecties in Heroku
                     pool.setDriverClassName("org.postgresql.Driver");
                     pool.setUrl(dbUrl);
                     pool.setInitialSize(1);
