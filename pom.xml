@@ -78,6 +78,17 @@
           <version>8.0.33</version>
       </dependency>
 
+
+      <dependency>
+          <groupId>com.github.jsimone</groupId>
+          <artifactId>webapp-runner</artifactId>
+          <version>8.5.11.3</version>
+          <scope>provided</scope>
+      </dependency>
+
+
+
+
   </dependencies>
 
   <build>
@@ -148,6 +159,9 @@
                   </execution>
               </executions>
           </plugin>
+
+
+
       </plugins>
     </pluginManagement>
   </build>
