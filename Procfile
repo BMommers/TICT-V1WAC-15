@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp "target/dependency/*" webapp-runner.jar --port $PORT target/firstapp-1.0.war
+web: java $JAVA_OPTS -cp "target/dependency/*" webapp.runner.launch.Main --port $PORT target/*.war
