@@ -8,8 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-public class CountryPostgresDaoImpl extends PostgresBaseDao implements CountryDao {
+//public class CountryPostgresDaoImpl extends PostgresBaseDao implements CountryDao {
+public class CountryPostgresDaoImpl extends BaseDAO implements CountryDao {
     private List<Country> selectCountries (String query) {
         List<Country> results = new ArrayList<Country>();
 
