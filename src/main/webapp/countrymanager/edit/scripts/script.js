@@ -3,8 +3,8 @@ var countryCode;
 function initPage() {
     countryCode = window.location.search.substring(1).split("=")[1];
     document.getElementById("confirmUpdate").addEventListener("click", function() {
+
         var formData = new FormData(document.querySelector("#PUTcountryForm"));
-        console.log(formData);
         var encData = new URLSearchParams(formData.entries());
 
         fetch("/restservices/countries/"+countryCode, {method: 'PUT', body: encData })

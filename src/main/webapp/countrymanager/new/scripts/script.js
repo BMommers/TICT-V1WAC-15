@@ -6,8 +6,8 @@ function initPage() {
         fetch("/restservices/countries/new", {method: 'PUT', body: encData })
             .then(function(response) {return response;})
             .then(function(myJson) { console.log(myJson)})
-
     });
+
     document.getElementById("login").addEventListener("click", login);
     document.getElementById("logoutBtn").addEventListener("click", logout);
     if (window.sessionStorage.getItem("username") != null) {
